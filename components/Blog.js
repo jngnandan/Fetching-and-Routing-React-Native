@@ -2,13 +2,18 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 
-import {useEffect, useMemo, useState} from 'react'
+import {useEffect, useMemo, useState, useContext} from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-
+import { ContentContext } from '../context/ContentContext'
 
 const Blog = ({ route }) => {
   const [data, setData] = useState([])
+
+// useContext  
+  const {addFavorite, removeFavorite, name} = useContext(ContentContext)
+  console.log(name)
+
 
   const {id} = route.params
 
@@ -17,7 +22,6 @@ const Blog = ({ route }) => {
       const response = await fetch(`https://apis.ccbp.in/blogs/${id}`)
       const data = await response.json()
       setData(data)
-        console.log(data)
     }
     fetchData()
   }, [])

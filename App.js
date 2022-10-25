@@ -16,7 +16,9 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Article from './components/Article';
 import Blog from './components/Blog';
+import { ContentContext } from './context/ContentContext';
 
+import ContentProvider from './context/ContentContext';
 
 function DrawerNavigator(){
   return(
@@ -31,6 +33,7 @@ function DrawerNavigator(){
 export default function App() {
   return (
       <NavigationContainer>
+        <ContentProvider>
         <Stack.Navigator 
           screenOptions={{
             headerStyle: {backgroundColor: 'skyblue'},
@@ -45,7 +48,9 @@ export default function App() {
           <Stack.Screen name="Contact" component={Contact} />
           <Stack.Screen name="Article" component={Article} />
           <Stack.Screen name="Blog" component={Blog} />
+          
         </Stack.Navigator>
+        </ContentProvider>
       </NavigationContainer>  
   )
 }
